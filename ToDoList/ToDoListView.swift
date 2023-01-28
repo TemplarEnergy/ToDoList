@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ToDoListView: View {
     
+    @State private var sheetIsPresented = false
+    
     var ToDos = ["Learn Swift",
                  "Build Apps",
                  "Chane the World",
-                 "Bring the Awesome"]
+                 "Bring the Awesome",
+                 "Take a Vacation"]
     
     var body: some View {
         NavigationStack {
@@ -25,11 +28,30 @@ struct ToDoListView: View {
                     } label: {
                         Text(toDo)
                     }
+                    .font(.title2)
                     
                 }
             }.navigationTitle("To Do List")
                 .navigationBarTitleDisplayMode(.automatic)
                 .listStyle(.plain)
+                .font(.title2)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            sheetIsPresented.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+
+                    }
+                    
+                }
+                .sheet(isPresented: $sheetIsPresented) {
+                    DetailView(passedValues: "")
+                }
+//                .fullScreenCover(isPresented: $sheetIsPresented) {
+//                    DetailView(passedValues: "")
+//                }
         }
     }
 }
