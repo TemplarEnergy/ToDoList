@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ToDo: Identifiable {
-    var id = UUID().uuidString
+struct ToDo: Identifiable, Codable {
+    var id: String?
     var item = ""
     var notes = ""
     var dueDate   = Date.now + (60*60*24)

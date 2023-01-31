@@ -28,8 +28,8 @@ struct ToDoListView: View {
                 }
                 // Short hand cal to onDelete and onMove here
                 
-                .onDelete(perform: toDosVM.delete)
-                .onMove(perform: toDosVM.move)
+                .onDelete(perform: toDosVM.deleteToDo)
+                .onMove(perform: toDosVM.moveToDo)
                 
                 //Traditiona calls below
                 
@@ -61,7 +61,7 @@ struct ToDoListView: View {
             
                 .sheet(isPresented: $sheetIsPresented) {
                     NavigationStack{
-                        DetailView(toDo: ToDo(), newToDo: true)
+                        DetailView(toDo: ToDo())
                     }
                 }
         }
