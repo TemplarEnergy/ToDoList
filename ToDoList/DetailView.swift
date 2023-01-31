@@ -47,11 +47,8 @@ struct DetailView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing ) {
                     Button("Save") {
-                        // If new append to toDOVM.todos else update the toDo that was pased in from the List
-                        if newToDo {
-                            toDosVM.toDos.append(toDo)
-                            dismiss()
-                        }
+                        toDosVM.saveToDo(toDo: toDo, newToDo: newToDo)
+                        dismiss()
                     }
                 }
             }

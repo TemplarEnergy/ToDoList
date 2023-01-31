@@ -8,7 +8,7 @@
 import Foundation
 
 struct ToDo: Identifiable {
-    let id = UUID().uuidString
+    var id = UUID().uuidString
     var item = ""
     var notes = ""
     var dueDate   = Date.now + (60*60*24)

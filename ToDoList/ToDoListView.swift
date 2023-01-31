@@ -25,13 +25,30 @@ struct ToDoListView: View {
                         Text(toDo.item)
                     }
                     .font(.title2)
-                    
                 }
+                // Short hand cal to onDelete and onMove here
+                
+                .onDelete(perform: toDosVM.delete)
+                .onMove(perform: toDosVM.move)
+                
+                //Traditiona calls below
+                
+//                .onDelete { indexSet in
+//                    toDosVM.delete(indexSet: indexSet)
+//              }
+//                .onMove { fromOffsets, toOffset in
+//                    toDosVM.move(fromOffsets: fromOffsets, toOffset: toOffset)
+//
+//                }
             }.navigationTitle("To Do List")
                 .navigationBarTitleDisplayMode(.automatic)
                 .listStyle(.plain)
                 .font(.title2)
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
+                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             sheetIsPresented.toggle()
@@ -40,7 +57,6 @@ struct ToDoListView: View {
                         }
                         
                     }
-                    
                 }
             
                 .sheet(isPresented: $sheetIsPresented) {
@@ -48,11 +64,6 @@ struct ToDoListView: View {
                         DetailView(toDo: ToDo(), newToDo: true)
                     }
                 }
-            //                .fullScreenCover(isPresented: $sheetIsPresented) {
-            //                    DetailView(passedValues: "")
-            //                }
-            
-            
         }
     }
 }
